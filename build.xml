@@ -65,7 +65,7 @@
 			<zipgroupfileset dir="Resorces" />
 			<zipfileset file="License"/>
 			<manifest>
-				<attribute name="Main-Class" value="PAQInstallerV3" />
+				<attribute name="Main-Class" value="common.Main" />
 				<attribute name="Class-Path" value="${jar.classpath}" />
 			</manifest>
 		</jar>
