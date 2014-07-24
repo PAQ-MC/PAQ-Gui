@@ -12,11 +12,12 @@ public class installerStart {
 		System.out.println("Downloading Installer");
 		File tmp = File.createTempFile("Installer", ".jar");
 		tmp.deleteOnExit();
+		
 		try (InputStream is = new URL("http://mage-tech.org/installer/jar/PAQ-Installer-v3.0.jar").openStream()) {
 			StreamUtils.saveTo(is, tmp);
 		}
 
-		System.out.print("Starting installer");
+		System.out.println("Starting installer");
 		Launch.jar(tmp, args);
 	}
 }
