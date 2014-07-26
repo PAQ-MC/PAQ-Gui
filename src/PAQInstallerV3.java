@@ -118,7 +118,7 @@ public class PAQInstallerV3 {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
 
-				/** Action Code Here */
+				
 
 				try {
 					installerStart.start(args);
