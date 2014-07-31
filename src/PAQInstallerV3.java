@@ -60,7 +60,8 @@ public class PAQInstallerV3 {
 		if (options.has("h")) {
 			System.out.println("Argement help");
 			System.out.println("--m = modpack location in fourm of url");
-			System.out.println("--v = modpack version only for debuging don't use unless you know what your doing ");
+			System.out
+					.println("--v = modpack version only for debuging don't use unless you know what your doing ");
 			System.out.println("--s = is this a server install");
 			System.out.println("--h = this help menu");
 			System.exit(0);
@@ -76,7 +77,7 @@ public class PAQInstallerV3 {
 					}
 				}
 			});
-		}else{
+		} else {
 			try {
 				installerStart.start(args);
 			} catch (ClassNotFoundException | NoSuchMethodException
@@ -85,7 +86,7 @@ public class PAQInstallerV3 {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} 
+		}
 
 	}
 
@@ -117,8 +118,6 @@ public class PAQInstallerV3 {
 		tglbtnInstall.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
-
-				
 
 				try {
 					installerStart.start(args);
