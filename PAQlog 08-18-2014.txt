@@ -1,0 +1,6 @@
+Install Button Clicked
+Begining Install
+Installing client
+Forge is already installed moving on to next step
+Downloading: [1.7.10]ArmorStatusHUD-client-1.27.jar
+C:\Users\Isaac\AppData\Roaming\PAQ\PAQ1.7.X\mods\[1.7.10]ArmorStatusHUD-client-1.27.jar

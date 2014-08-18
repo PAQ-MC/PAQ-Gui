@@ -26,12 +26,15 @@ import java.lang.reflect.InvocationTargetException;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 
+import javax.swing.JButton;
+
 public class PAQInstallerV3 {
 
 	public JFrame frame;
 	public static PAQInstallerV3 window;
 	private JToggleButton tglbtnInstall;
 	public static String[] args;
+	public JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -42,30 +45,12 @@ public class PAQInstallerV3 {
 		OptionParser parser = new OptionParser("m::v::s::h");
 		OptionSet options = parser.parse(_args);
 
-		String mod = null;
-		String version = null;
 		boolean server = false;
 
-		if (options.has("m")) {
-			mod = (String) options.valueOf("m");
-			System.out.println((String) options.valueOf("m"));
-		}
-		if (options.has("v")) {
-			version = (String) options.valueOf("v");
-		}
 		server = options.has("s");
 
 		// help argment
 
-		if (options.has("h")) {
-			System.out.println("Argement help");
-			System.out.println("--m = modpack location in fourm of url");
-			System.out
-					.println("--v = modpack version only for debuging don't use unless you know what your doing ");
-			System.out.println("--s = is this a server install");
-			System.out.println("--h = this help menu");
-			System.exit(0);
-		}
 		if (!server) {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
@@ -83,7 +68,6 @@ public class PAQInstallerV3 {
 			} catch (ClassNotFoundException | NoSuchMethodException
 					| InvocationTargetException | IllegalAccessException
 					| IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -99,6 +83,7 @@ public class PAQInstallerV3 {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @wbp.parser.entryPoint
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -108,7 +93,7 @@ public class PAQInstallerV3 {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(PAQInstallerV3.class
 				.getResource("/PAQLogo.png")));
 		lblNewLabel.setBounds(182, 74, 468, 177);
@@ -124,7 +109,6 @@ public class PAQInstallerV3 {
 				} catch (ClassNotFoundException | NoSuchMethodException
 						| InvocationTargetException | IllegalAccessException
 						| IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -138,5 +122,25 @@ public class PAQInstallerV3 {
 				.getResource("/paq_buttons_Install_over.png")));
 		tglbtnInstall.setBounds(159, 307, 504, 125);
 		frame.getContentPane().add(tglbtnInstall);
+		
+		JButton btnSettings = new JButton();
+		btnSettings.setIcon(new ImageIcon(PAQInstallerV3.class
+				.getResource("/gear.png")));
+		btnSettings.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							Settings window = new Settings();
+							window.frmSettings.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		btnSettings.setBounds(698, 463, 89, 73);
+		frame.getContentPane().add(btnSettings);
 	}
 }
