@@ -6,7 +6,6 @@
               as the first entry and export the buildfile again. -->
 <project basedir="." default="build" name="PAQ-Gui">
 	<property environment="env" />
-	<property name="ECLIPSE_HOME" value="../../eclipse" />
 	<property name="debuglevel" value="source,lines,vars" />
 	<property name="target" value="1.7" />
 	<property name="source" value="1.7" />
@@ -18,6 +17,7 @@
 		<pathelement location="Resorces/jcl-core-2.5.jar" />
 		<pathelement location="Resorces/jopt-simple-4.6.jar" />
 		<pathelement location="Resorces/zip4j_1.3.2.jar" />
+		<pathelement location="forms-1.3.0.jar" />
 	</path>
 	<target name="init">
 		<mkdir dir="bin" />
@@ -42,18 +42,10 @@
 		</javac>
 	</target>
 	<target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects" />
-	<target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
-		<copy todir="${ant.library.dir}">
-			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar" />
-		</copy>
-		<unzip dest="${ant.library.dir}">
-			<patternset includes="jdtCompilerAdapter.jar" />
-			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar" />
-		</unzip>
-	</target>
-	<target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" />
-		<antcall target="build" />
+	<target name="PAQInstallerV3">
+		<java classname="PAQInstallerV3" failonerror="true" fork="yes">
+			<classpath refid="PAQ-Gui.classpath" />
+		</java>
 	</target>
 	<manifestclasspath property="jar.classpath" jarfile="${jar.file}">
 		<classpath>
@@ -63,12 +55,11 @@
 	<target depends="build" name="jar">
 		<jar destfile="jar/PAQ-Gui.jar" basedir="bin">
 			<zipgroupfileset dir="Resorces" />
-			<zipfileset file="License"/>
+			<zipfileset file="License" />
 			<manifest>
 				<attribute name="Main-Class" value="PAQInstallerV3" />
 				<attribute name="Class-Path" value="${jar.classpath}" />
 			</manifest>
 		</jar>
 	</target>
-
 </project>

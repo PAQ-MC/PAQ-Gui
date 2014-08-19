@@ -103,6 +103,8 @@ public class PAQInstallerV3 {
 		tglbtnInstall.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
+			
+				Settings.frmSettings.setVisible(false);
 
 				try {
 					installerStart.start(args);
