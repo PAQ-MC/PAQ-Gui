@@ -83,6 +83,7 @@ public class PAQInstallerV3 {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * 
 	 * @wbp.parser.entryPoint
 	 */
 	private void initialize() {
@@ -103,8 +104,10 @@ public class PAQInstallerV3 {
 		tglbtnInstall.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
-			
-				Settings.frmSettings.setVisible(false);
+
+				if (Settings.frmSettings != null) {
+					Settings.frmSettings.setVisible(false);
+				}
 
 				try {
 					installerStart.start(args);
@@ -124,7 +127,7 @@ public class PAQInstallerV3 {
 				.getResource("/paq_buttons_Install_over.png")));
 		tglbtnInstall.setBounds(159, 307, 504, 125);
 		frame.getContentPane().add(tglbtnInstall);
-		
+
 		JButton btnSettings = new JButton();
 		btnSettings.setIcon(new ImageIcon(PAQInstallerV3.class
 				.getResource("/gear.png")));

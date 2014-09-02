@@ -49,7 +49,12 @@ public class installerStart {
 				System.out.println("-v " + Settings.ModPackVersion);
 			}
 			System.out.println("Starting installer");
-			Launch.jar(tmp, args2);
+				try {
+					UglyLaunchTempPatch.jar(tmp, args2);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 		
 

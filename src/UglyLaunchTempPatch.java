@@ -2,12 +2,11 @@
 This work is licensed under the Creative Commons
 Attribution-NonCommercial 3.0 Unported License.
 To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/3.0/.
-*/
+ */
 
 /***
-	Created By Isaac Wheeler
-*/
-
+ Created By Isaac Wheeler
+ */
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,7 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class UglyLaunchTempPatch {
 
-	public static void jar(File jarFile, Boolean Server) throws IOException,
+	public static void jar(File jarFile, String[] args) throws IOException,
 			ClassNotFoundException, NoSuchMethodException,
 			InvocationTargetException, IllegalAccessException,
 			InterruptedException {
@@ -26,32 +25,31 @@ public class UglyLaunchTempPatch {
 
 		jarFile.deleteOnExit();
 
-		if (Server) {
-			Process p = Runtime.getRuntime().exec(
-					"java -jar " + "\"" + jarFile.getAbsolutePath() + "\" "
-							+ "-installServer");
 
-			BufferedReader input = new BufferedReader(new InputStreamReader(
-					p.getErrorStream()));
-
-			String line = null;
-
-			while ((line = input.readLine()) != null) {
-
-				System.out.print(line);
-
-			}
-
-			p.waitFor();
-			if (p.exitValue() != 0) {
-			}
-		} else {
-			Process p = Runtime.getRuntime().exec(
-					"java -jar " + "\"" + jarFile.getAbsolutePath() + "\" ");
-			p.waitFor();
-			if (p.exitValue() != 0) {
-			}
+		String args2 = "";
+		/* bugged work on latter
+		if(args.length != 0){
+			for(int i =1; i <= args.length; i++){
+				if(args[i] != null){
+					args2 = args2 + args[i];
+				}
+			
 		}
-
+		}
+		*/
+		
+		System.out.println(args2);
+		System.out.println("running_ " + jarFile.getAbsolutePath() );
+		Process p = Runtime.getRuntime().exec(
+				"java -jar " + "\"" + jarFile.getAbsolutePath() + "\" "
+						+ args2 );
+		p.getOutputStream();
+		p.getErrorStream();
+		p.getInputStream();
+		p.waitFor();
+		System.out.println("no longer running");
+		if (p.exitValue() != 0) {
+		}
 	}
+
 }
